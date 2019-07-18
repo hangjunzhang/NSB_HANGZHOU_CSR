@@ -1,0 +1,67 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Nokia邮箱验证</title>
+	<link rel="stylesheet" href="/static/public/bootstrap/css/bootstrap.min.css">
+<style>
+	.glyphicon-envelope{
+		font-size:100px;
+		color:green;
+	}
+	#email{
+		border:0px;
+		outline:none;
+		width:150px;
+		text-align:right;
+	}
+</style>
+</head>
+<body>
+	<div style='text-align:center;margin-top:100px;'><span class='glyphicon glyphicon-envelope'></span></div>
+	<div style='text-align:center;margin-top:10px;'>发送确认邮件至Nokia邮箱</div>
+	<div style='text-align:center;margin-top:40px;'>
+	<span style='border-bottom:1px solid green;display:inline-block;padding-right:10px;color:green;font-size:18px;'><input id='email' type='text' placeholder='输入您Nokia邮箱'>@nokia-sbell.com</span>
+	</div>
+	<div style='text-align:center;margin-top:10px;width:100%;position:absolute;bottom:80px;'><input id='send' type='button' class='btn btn-default btn-success' disabled value="发送邮件"></div>
+</body>
+<script src='/static/public/js/jquery.js'></script>
+<script>
+function send(){
+	var mail = $("#email").val()+"@nokia-sbell.com"
+	$.post("/api/mobile/mail/",{'email':mail},function(req){
+		if(req.code=="0000"){
+			window.location.reload()
+		}
+	})
+}
+	var email = "{{email}}"
+	if(email!=''){
+		var v = email.split("@")[0]
+		$("#email").val(v)
+		$("#send").val('确认邮件已发送')
+		$("#send").removeClass('btn-success')
+		$("#email").change(function(){
+			var mail = $("#email").val()+"@nokia-sbell.com"
+			$("#send").unbind()
+			if (mail==email){
+				$("#send").attr('disabled',true)
+				$("#send").val('确认邮件已发送')
+				$("#send").removeClass('btn-success')
+			}else{
+				$("#send").val('发送邮件')
+				$("#send").addClass('btn-success')
+				$("#send").removeAttr('disabled')
+				$("#send").click(function(){
+					send()
+				})
+			}
+		})
+	}else{
+		$("#send").removeAttr('disabled')
+		$("#send").click(function(){
+			send()
+		})
+	}
+	
+</script>
+</html>

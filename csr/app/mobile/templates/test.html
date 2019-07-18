@@ -1,0 +1,2549 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>MYtest</title>
+	<link rel="stylesheet" href="/static/public/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/public/swiper/swiper.min.css">
+	<link rel="stylesheet" href="/static/public/iconfont/iconfont.css">
+<style>
+	.iconfont{
+		display:inline-block;
+		vertical-align: middle;
+	}
+	html{
+		padding:0px;
+		margin:0px;
+		overflow:hidden;
+		position:fixed;
+		width:100%;
+		height:100%;
+		font-family: Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",STHeiti,"华文细黑",sans-serif;
+	}
+	body{
+		padding:0px;
+		margin:0px;
+		overflow:hidden;
+		position:fixed;
+		width:100%;
+		height:100%;
+		font-family:Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",STHeiti,"华文细黑",sans-serif;
+	}
+	.pages{
+		position:absolute;
+		height:100%;
+		width:100%;
+		background-color:#fff;
+	}
+	.actpage{
+		z-index:9998;
+	}
+	.exittext{
+		position: absolute;
+		bottom: 80px;
+		z-index: 999999;
+		width: 60%;
+		padding: 10px;
+		margin-left: 20%;
+		background: rgba(0, 0, 0, 0.7);
+		color: #fff;
+		text-align: center;
+		border-radius: 5px;
+	}
+	
+	.alertbox{
+		position: relative;
+		top: 40%;
+		width: 80%;
+		border-radius: 2px;
+		height: 30px;
+		margin: auto;
+		text-align: center;
+		line-height: 30px;
+		z-index: 99999;
+		background-color: rgba(0,0,0,0.6);
+		color: #fff;
+	}
+	#service_time{
+		outline:none;
+		border:none;
+	}
+</style>
+<style name='homepage'>
+
+</style>
+<style name='forum'>
+#swiper-container1{
+	height:40px;
+	width:100%;
+	margin-left:0px;
+	color:#fff;
+	background-color:#eb413d;
+}
+#swiper-container1 .swiper-slide{
+	width: auto;
+    padding: 0px 8px;
+    transition: all 0.2s;
+    font-size: 12px;
+    line-height: 40px;
+}
+#swiper-container2 .swiper-slide{
+	padding-bottom:90px;
+	overflow-y:auto;
+}
+#swiper-container2{
+	padding-top:40px;
+	background: #eee;
+}
+
+.forum .uderbar{
+	position:absolute;
+	margin-top:32px;
+}
+#bar{
+	height:3px;
+	border-radius:3px;
+	background:#fff;
+	display:inline-block;
+	transition:all 0.2s;
+}
+.forum .actcolor{
+	font-weight:bold;
+	transition:all 0.1s;
+}
+.forum .inactive{
+	display:none;
+}
+
+.forum .selectmenu{
+	box-sizing: border-box;
+	z-index: 998;
+	right: 40px;
+	background: #eb413d;
+	position: fixed;
+	height: 39px;
+	width: 40px;
+	text-align: center;
+	box-shadow: 4px -5px 5px 2px rgba(0,0,0,0.7)
+}
+.forum .selecttopic{
+	box-sizing: border-box;
+	z-index: 999;
+	right: 0px;
+	background: #eb413d;
+	position: fixed;
+	height: 39px;
+	width: 40px;
+	text-align: center;
+	box-shadow: 4px -5px 5px 2px rgba(0,0,0,0.7)
+}
+.forum .selectmenu .glyphicon-menu-down{
+	font-size:20px;
+	line-height: 40px;
+	color:#fff;
+}
+
+.forum .selecttopic .icon-caidan{
+	font-size:24px;
+	line-height: 40px;
+	color:#fff;
+	display:block;
+}
+.forum .selecttopic .rotate{
+	transform:rotate(45deg);
+}
+.forum .actup{
+	transform:rotate(180deg)
+}
+#swiper-container1 .swiper-wrapper{
+	transition-duration: 300ms
+}
+.forum .menubox{
+	position:fixed;
+	top:0px;
+	z-index:999;
+	width:100%;
+}
+
+
+
+
+
+.forum .blocklist{
+	position:fixed;
+	width:100%;
+	left:0px;
+	height:100%;
+	top:-50px;
+	padding-top:90px;
+	box-sizing:border-box;
+	border-bottom:1px solid #eee;
+	transition-duration:0.3s;
+	transform:translateY(-100%)!important;
+	background-color:rgba(0,0,0,0.3);
+	overflow-y:auto;
+}
+.forum .actblock{
+	transform:translateY(0)!important;
+}
+.forum .blocklist .checkview .glyphicon-ok{
+	background-color: #eb413d;
+    color: #fff;
+    padding: 2px;
+    font-size: 10px;
+    top: -1px;
+    width: 14px;
+    left: -1px;
+    height: 14px;
+	display:none;
+}
+.forum .blocklist .checkview{
+    border: 1px solid #aaa;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.forum .blocklist .checkblock{
+	position:absolute;
+	z-index:2;
+	width: 13px;
+    height: 13px;
+	margin:0px;
+	display:none;
+	
+}
+.forum .blocklist .actcheck{
+	border:0;
+}
+.forum .blocklist .actcheck .glyphicon-ok{
+	display:inline-block
+}
+
+.forum .blocklist .block_name{
+	padding-top: 10px;
+    padding-bottom: 5px;
+	font-size:12px;
+}
+.forum .blocklist .block_description{
+	font-size:10px;
+	color:#777;
+	padding: 5px 0px;
+}
+
+
+
+.forum .topiclist{
+	position:fixed;
+	width:100%;
+	left:0px;
+	height:100%;
+	top:-50px;
+	padding-top:90px;
+	box-sizing:border-box;
+	border-bottom:1px solid #eee;
+	transition-duration:0.3s;
+	box-shadow:0 0 2px 1px rgba(0,0,0,0.1);
+	transform:translateY(-100%);
+	background-color:rgba(0, 0, 0, 0.3);
+}
+.forum .acttopic{
+	transform:translateY(0)
+}
+.forum .topiclist .topicselect{
+	background:#fff;
+}
+
+
+#swiper-container2 .author{
+	padding:10px;
+}
+#swiper-container2 .headimg{
+	float:left;
+	padding:2px;
+	margin-right:10px;
+}
+#swiper-container2 .headimg img{
+	width:35px;
+	height:35px;
+	border-radius:30px;
+}
+#swiper-container2 .infobox{
+	padding:2px;
+	color:#666;
+	float:left;
+	font-size: 12px;
+	line-height:17px;
+}
+#swiper-container2 .infobox .edittime{
+	font-size: 10px;
+	color:#aaa;
+}
+
+#swiper-container2 .postinfo{
+	margin:5px 0px;
+	background-color:#fff;
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+#swiper-container2 .hotinfo{
+	float:right;
+	vertical-align:middle;
+	color:#aaa;
+	font-size:12px;
+}
+#swiper-container2 .viewnum,.marknum{
+	padding:0px 2px;
+	color:#ccc;
+	vertical-align:middle;
+}
+#swiper-container2 .hotinfo .glyphicon{
+	color:#ccc;
+}
+#swiper-container2 .titleinfo{
+	padding:10px;
+	padding-top:0px;
+}
+#swiper-container2 .titleinfo .iconfont{
+	display:none;
+}
+#swiper-container2 .subject{
+	color:#000;
+	font-size:16px
+}
+#swiper-container2 .readed .subject{
+	color:#aaa;
+	font-size:16px
+}
+.forum .backinfo{
+	width:100%;
+	position:absolute;
+	text-align:center;
+	line-height:30px;
+}
+
+.forum .addpostbt{
+	position:absolute;
+	z-index:9;
+	background:#eb413d;
+	width:60px;
+	height:60px;
+	border-radius:100%;
+	color:#fff;
+	line-height:100px;
+	font-size:20px;
+	text-align:center;
+	bottom:60px;
+	right:10px;
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.22);
+}
+.forum .addpostbt .glyphicon-edit{
+	line-height: 60px;
+	padding-left: 2px;
+	font-size: 28px;
+}
+.forum .hotpost{
+	background: #fff;
+    padding: 0px 5px;
+    border-bottom: 1px solid #eee;
+    height: 38px;
+    line-height: 38px;
+}
+.forum .hotpost .hottag{
+	width: 50px;
+	height: 30px;
+	border-radius: 3px;
+	color: #FF5722;
+	border: 1px solid #FF5722;
+	font-size: 10px;
+	line-height:12px;
+	vertical-align:middle;
+	margin-right:5px;
+
+}
+.forum .hotbox{
+	
+	overflow:hidden;
+}
+.forum .acthotbox{
+	max-height:123px;
+}
+.forum .hotbox .hotname{
+	font-size:12px;
+}
+.forum .morehot{
+	background: #fff;
+    text-align: center;
+    color: #aaa;
+    padding: 5px;
+    font-size: 16px;
+}
+.forum .morepost{
+    text-align: center;
+    position: fixed;
+    bottom: 50px;
+    background: rgba(175, 175, 175, 0.3);
+    width: 100%;
+    padding: 5px;
+    z-index: 9;
+}
+.forum .nomore{
+    text-align: center;
+}
+.forum .actmorehot{
+	transform:rotate(180deg);
+}
+
+.forum .topiclist .topicbt{
+	line-height:30px;
+	height:30px;
+	border:1px solid #aaa;
+	border-radius:36px;
+	font-size:10px;
+	text-align:center;
+	width:22%;
+	margin-left:2.4%;
+	display:inline-block;
+	margin-top:15px;
+}
+.forum .topiclist .acttopicbt{
+	background-color:#eb413d;
+	color:#fff;
+	border:1px solid #eb413d;
+}
+
+</style>
+<style name='footer'>
+#footer{
+	z-index:9999;
+	width:100%;
+	height:50px;
+	font-size:12px;
+	position:fixed;
+	bottom:0px;
+	box-sizing:border-box;
+	border-top:1px solid #eee;
+	background-color:#fff;
+	color:#9d9d9d;
+	
+}
+#footer .menu{
+	padding:5px;
+	width:24%;
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	line-height:25px;
+}
+#footer .menu .glyphicon{
+	margin-top: 6px;
+    font-size: 16px;
+}
+#footer .actmenu .acticon{
+	display:inline-block!important
+}
+#footer .actmenu .inacticon{
+	display:none!important
+}
+#footer .actmenu .menuname{
+	color:#eb413d;
+}
+#footer .menu .acticon{
+	display:none
+}
+#footer .menu .inacticon{
+	display:inline-block
+}
+#footer .menuname{
+	margin-top:-6px;
+}
+</style>
+<style name='outer'>
+#outer{
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	position:absolute;
+	transform:translateX(100%);
+	background-color:#fff;
+	transition:all 0.3s;
+	z-index:10000;
+}
+#outer .addpost .textbox{
+    padding: 10px; 
+    outline: 0; 
+    font-size: 12px; 
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#outer .addpost .fileselect{
+	display:none;
+}
+.actouter{
+	transform:translateX(0)!important;
+}
+
+#outer .addpost .subject{
+	outline: 0;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    line-height: 20px;
+    font-size: 18px;
+}
+#outer .addpost .placeholder{
+	border:0;
+	padding:10px;
+	z-index:-1;
+	position:absolute;
+	color:gray;
+}
+#outer .addpost .selection{
+	padding: 12px 0px;
+}
+
+#outer .addpost .selection div{
+	display:inline-block;
+	background-color:#ddd;
+	border-radius:2px;
+	padding:5px;
+	margin-left:5px;
+	font-size:12px;
+	color:#585858;
+}
+#outer .addpost .pic{
+	font-size:24px;
+	float:right;
+	vertical-align:middle;
+	margin-right:10px;
+	color:gray;
+}
+#outer .actionbar{
+	background-color:#eb413d;
+	color:#fff;
+	height:40px;
+	position:relative;
+	z-index:1;
+}
+#outer .back{
+	float: left;
+    padding: 0px 10px;
+    line-height: 40px;
+    font-weight: bold;
+}
+#outer .send{
+	float: right;
+    padding: 0px 10px;
+    line-height: 40px;
+    font-weight: bold;
+	pointer:cursor;
+}
+#outer .addpost .addimgview{
+	background-size:contain;
+}
+
+/* ---------------  viewpost  ---------------------*/
+#outer .viewpost .textbox{
+	width:100%;
+	font-size:12px;
+	padding:8px;
+}
+#outer .viewpost .upbox{
+	text-align:center;
+    border-bottom: 1px solid #eee;
+	padding-bottom:10px;
+}
+#outer .viewpost .upbox div{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 50px;
+	position:relative;
+}
+#outer .viewpost .upbox .uppost{
+	line-height:35px;
+}
+#outer .viewpost .upbox .actuppost{
+	color:#eb413d;
+	line-height:35px;
+}
+#outer .viewpost .upbox .uppostnum{
+	bottom: 0px;
+    font-size: 10px;
+    display: block;
+    margin: auto;
+    margin-top: -12px;
+	display:none;
+}
+#outer .viewpost .upbox .actuppost + .uppostnum{
+	color:#eb413d;
+}
+#outer .viewpost .postbox{
+	height:100%;
+	overflow-y:auto;
+	padding-bottom:100px;
+	padding-left:10px;
+	padding-right:10px;
+	-webkit-overflow-scrolling: touch;
+}
+#outer .viewpost .subject{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+#outer .viewpost .headimg img{
+	width:30px;
+	height:30px;
+	border-radius:30px;
+}
+#outer .viewpost .author{
+	padding:5px;
+	border-bottom: 1px solid #ddd;
+}
+#outer .viewpost .headimg{
+	float:left;
+	padding:2px;
+	margin-right:10px;
+}
+#outer .viewpost .infobox{
+	padding:2px;
+	color:gray;
+	font-size: 12px;
+}
+#outer .viewpost .infobox .icon-shijian{
+	font-size: 12px;
+}
+#outer .viewpost .tag{
+    background: #eb413d;
+    color: #fff;
+    padding: 2px 4px;
+    font-size: 10px;
+    border-radius: 3px;
+    margin-left: 8px;
+	line-height:12px;
+}
+#outer .viewpost .edittime{
+	margin-left:5px;
+}
+#outer .viewpost .replay{
+	position: fixed;
+	bottom: 0px;
+	left:0px;
+	z-index: 9999;
+	padding: 10px 15px;
+	width: 100%;
+	border-top: 1px solid #ddd;
+	background-color:#fff;
+
+}
+#outer .viewpost .inputbt{
+	height: 35px;
+    border: 1px solid #aaa;
+    outline: 0;
+    padding: 5px;
+    border-radius: 3px;
+    width: 100%;
+    padding-right: 40px;
+}
+#outer .viewpost .icon-invalid-name{
+	font-size: 20px;
+	color: #aaa;
+	line-height: 35px;
+
+}
+#outer .viewpost .msgnum{
+	position: absolute;
+	right: 15px;
+	margin-top: -33px;
+	
+}
+#outer .viewpost .num{
+	position: absolute;
+    z-index: 2;
+    background: #eb413d;
+    color: #fff;
+    font-size: 10px;
+    line-height: 14px;
+    height: 14px;
+    width: 14px;
+    text-align: center;
+    border-radius: 12px;
+    margin-left: 12px;
+}
+#outer .viewpost .sendbox{
+	position: absolute;
+	right: 10px;
+	margin-top: -33px;
+	display:none;
+	z-index:3;
+	
+}
+#outer .viewpost .pic{
+	font-size: 24px;
+	color: #aaa;
+}
+#outer .viewpost .picbox{
+	float: right;
+	margin-top: -31px;
+	margin-right: 5px;
+}
+    
+#outer .viewpost .imgview{
+	width:100%;
+	height:0px;
+	transition:all 0.3s;
+	overflow:hidden;
+}
+#outer .viewpost .selectbox{
+	height:150px;
+	padding:10px;
+	overflow-x:scroll;
+	overflow-y:hidden;
+	white-space: nowrap;
+
+}
+#outer .viewpost .addpic{
+	height: 80px;
+    width: 80px;
+    display:inline-block;
+	position: relative;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    font-size: 40px;
+    line-height: 80px;
+    text-align: center;
+    color: #aaa;
+	vertical-align: middle;
+	margin-left:5px;
+}
+#outer .viewpost .picnum{
+    position: absolute;
+    margin-left: -5px;
+    font-size: 10px;
+    width: 12px;
+    height: 12px;
+    background: #eb413d;
+    line-height: 12px;
+    text-align: center;
+    color: #fff;
+    border-radius: 12px;
+	display:none;
+}
+#outer .viewpost .selectbox .imgdiv{
+	height: 80px;
+    width: 80px;
+	position: relative;
+	display:inline-block;
+	margin-right:10px;
+}
+#outer .viewpost .selectbox img{
+	height: 80px;
+    width: 80px;
+}
+#outer .viewpost .title{
+	line-height:50px;
+	text-align:center;
+}
+#outer .viewpost .fileselect{
+	display:none;
+}
+#outer .viewpost .delimg{
+	position: absolute;
+    margin-left: -12px;
+    margin-top: -5px;
+    z-index: 1;
+    background: #aaa;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 10px;
+    color: #fff;
+}
+#outer .viewpost .addimgview{
+	background-size:contain;
+}
+#outer .viewpost .answerbox{
+	font-size:12px;
+}
+#outer .viewpost .answerbox .a_headimg{
+	float:left;
+	padding:2px;
+	margin-right:10px;
+}
+
+#outer .viewpost .answerbox .a_headimg img{
+	width:30px;
+	height:30px;
+	border-radius:30px;
+}
+#outer .viewpost .answerbox .a_edittime{
+	margin-left:5px;
+}
+#outer .viewpost .answerbox .a_infobox{
+	color:gray;
+	font-size:12px;
+}
+#outer .viewpost .answerbox  .a_infobox .iconfont{
+	font-size:14px;
+	float:right;
+	line-height:14px;
+	color:#aaa;
+}
+#outer .viewpost .answerbox  .a_infobox .acthotbt{
+	color:#eb413d;
+}
+#outer .viewpost .answerbox  .a_infobox .hotbtnum{
+	font-size:12px;
+	float:right;
+	margin-right:30px;
+	margin-left:5px;
+	line-height:16px;
+}
+#outer .viewpost .answerbox  .a_infobox .answerbt{
+	margin-right:10px;
+}
+#outer .viewpost .answerbox .a_box{
+	padding:10px 0px;
+	border-bottom:1px solid #eee;
+}
+#outer .viewpost .answerbox .a_2_a{
+	padding: 10px;
+    background-color: #eee;
+    color: #aaa;
+    margin-left: 40px;
+	border-radius:5px;
+}
+#outer .viewpost .answerbox .a_time{
+	margin-left: 5px;
+}
+#outer .viewpost .answerbox .acthottag{
+	background: #30cfe3;
+    color: #fff;
+    padding: 2px;
+    font-size: 10px;
+    border-radius: 2px;
+}
+#outer .viewpost .answerbox .a_description{
+	margin-left: 40px;
+	margin-top:10px;
+}
+#outer .viewpost .answerbox .a_list{
+	border-top:1px solid #eee;
+	padding:10px;
+	margin-left: 40px;
+	margin-top:10px;
+}
+#outer .viewpost .tomename{
+	color:#aaa;
+}
+#outer .viewpost .tometime{
+	margin-left:5px;
+	color:#aaa;
+	font-size:10px;
+}
+#outer .viewpost .lastanswer{
+	line-height: 40px;
+    text-align: center;
+    color: #aaa;
+	display:none;
+	width:100%;
+}
+#outer .viewpost .actlastanswer{
+	position:fixed;
+	bottom:50px;
+}
+
+#outer .sending{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	z-index:99999;
+	background-color:#fff;
+	background-image:url('/static/img/loading.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.6;
+	display:none;
+}
+</style>
+<style name='outer2'>
+#outer2{
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	position:absolute;
+	transform:translateX(100%);
+	background-color:#fff;
+	transition:all 0.3s;
+	z-index:10000;
+}
+#outer2 .actionbar{
+	background-color:#eb413d;
+	color:#fff;
+	height:40px;
+}
+#outer2 .back{
+	float: left;
+    padding: 0px 10px;
+    line-height: 40px;
+    font-weight: bold;
+}
+#outer2 .back2{
+	float: left;
+    padding: 0px 10px;
+    line-height: 40px;
+    font-weight: bold;
+	display:none;
+}
+#outer2 .outer2_main{
+	padding:12px;
+}
+#outer2 .b_t_box{
+	padding:12px 0px;
+	border-bottom:1px solid #eee;
+	font-size:12px;
+}
+#outer2 .act_b_t_box{
+	color:#eb413d;
+}
+#outer2 .outer2_title{
+	line-height: 40px;
+	font-weight: bold;
+	padding-left:10px;
+}
+</style>
+</head>
+<body scroll="no">
+<div class='pages homepage'>
+	<span class="btn btn-default addbt">addtest</span>
+	<span class="btn btn-default viewbt">viewbt</span>
+	
+</div>
+<div class='pages forum actpage'>
+	<div class='menubox'>
+		<div class="selectmenu">
+			<span class='glyphicon glyphicon-menu-down up'></span>
+		</div>
+		<div class="selecttopic">
+			<span class='iconfont icon-caidan'></span>
+		</div>
+		<div class="swiper-container" id='swiper-container1'>
+			<div class="swiper-wrapper">
+				<div class="uderbar">
+					<span id="bar"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class='blocklist'>
+			<table class="blockmodel" style="display:none;">
+				<tr style='border-bottom:1px solid #eee;'>
+					<td style='width:40px;vertical-align:middle;text-align:center;'>
+						<div class='checkview'><span class="glyphicon glyphicon-ok"></span></div>
+					</td>
+					<td class='block_info'>
+						<div class='block_name'>开发历程（今日：0）</div>
+						<div class='block_description'></div>
+					</td>
+				</tr>
+			</table>
+			<table class='block_table' style="width: 100%;background: #fff;">
+			
+			</table>
+		</div>
+		<div class='topiclist'>
+			<div class="topicselect" style='padding-bottom:15px;'></div>
+		</div>
+	</div>
+	<div class="swiper-container" id='swiper-container2' >
+		<div class="backinfo"></div>
+		<div class="swiper-wrapper">
+			
+		</div>
+		<div class="morepost"></div>
+	</div>
+	<div class="addpostbt">
+		<span class="glyphicon glyphicon-edit"></span>
+	</div>
+	<div class="model" style="display:none">
+		<div class="hotpost">
+			<span class='hottag'>置顶</span><span class='hotname'>置顶帖测试</span>
+		</div>
+		<div class='postinfo'>
+			<div class="author">
+				<div class="headimg">
+					<img src="/static/headimg/1562219116_Tulips.jpg">
+				</div>
+				<div class="infobox">
+					<div class='authorname'>超级管理员</div>
+					<div class='edittime'>2019-7-04</div>
+				</div>
+				<div class="hotinfo">
+					<span class='iconfont icon-yanjing'></span><span class='viewnum'>1.0w</span>
+					<span class='iconfont icon-huifu'></span><span class='marknum'>6</span>
+				</div>
+				<div style='clear:both'></div>
+			</div>
+			<div class='titleinfo'>
+				<span class='iconfont icon-hot3'></span>
+				<span class='subject'>我的第一贴</span>
+			</div>
+		</div>
+	
+	</div>
+</div>
+<div class='pages hot'>
+	hot
+</div>
+<div class='pages my'>
+	my
+</div>
+<div id='footer'>
+	<div class='menu' data='homepage'>
+		<div><span class="iconfont icon-zhuye inacticon"></span></div>
+		<div><span class="iconfont icon-home acticon" style='color:#eb413d;'></span></div>
+		<div class='menuname'><span>首页</span></div>
+	</div>
+	<div class='menu actmenu' data='forum'>
+		<div><span class="iconfont icon-icon_luntan-xian inacticon"></span></div>
+		<div><span class="iconfont icon-icon_luntan-mian acticon" style='color:#eb413d;'></span></div>
+		<div class='menuname'><span>论坛</span></div>
+	</div>
+	<div class='menu' data='hot'>
+		<div><span class="iconfont icon-heart inacticon"></span></div>
+		<div><span class="iconfont icon-heart1 acticon" style='color:#eb413d;'></span></div>
+		<div class='menuname'><span>Hot</span></div>
+	</div>
+	<div class='menu' data='my'>
+		<div><span class="iconfont icon-weibiaoti- inacticon"></span></div>
+		<div><span class="iconfont icon-wode acticon" style='color:#eb413d;'></span></div>
+		<div class='menuname'><span>我</span></div>
+	</div>
+</div>
+<div id='outer'>
+	<div class="sending"></div>
+	<div class='subpage addpost' style='display:none'>
+		<div class='actionbar'>
+			<span class='back'>返回</span>
+			<span class='send'>发表</span>
+		</div>
+		<div>
+			<input class='subject' placeholder='标题 （必填）' >
+		</div>
+		<input placeholder = "正文" class='placeholder' readonly>
+		<div contenteditable="true" class='textbox' style='height:300px;'></div>
+		<div class='selection'>
+			<div class='blockbt'>版块：<span class='block'></span><span class='glyphicon glyphicon-menu-down'></span></div>
+			<div class='topicbt'>分类：<span class='topic'></span><span class='glyphicon glyphicon-menu-down'></span></div>
+			<span class='glyphicon glyphicon-picture pic'></span>
+		</div>
+	</div>
+	<div class='subpage viewpost'>
+		<div class='actionbar'>
+			<span class='back'>返回</span>
+		</div>
+		<div class='postbox'>
+			<div class="author">
+				<div class="headimg">
+					<img src="/static/headimg/1562219116_Tulips.jpg">
+				</div>
+				<div class="infobox">
+					<div><span class='authorname'>超级管理员</span><span class='tag' style='vertical-align:middle'>楼主</span></div>
+					<div style='margin-top:8px;'><span class='iconfont icon-shijian'></span><span class='edittime'>2019-7-04 14:44:52</span></div>
+				</div>
+			</div>
+			<div class='subject'></div>
+			<div class='textbox'></div>
+			<div class='upbox'>
+				<div>
+					<span class='iconfont icon-dianzanhaopingdamuzhixihuandingzhichixianxing uppost'></span>
+					<span class='uppostnum'>0</span>
+				</div>
+			</div>
+			<div class='answermodel' style='display:none;'>
+				<div class='a_box'>
+					<div class="a_author">
+						<div class="a_headimg">
+							<img src="/static/headimg/1562219116_Tulips.jpg">
+						</div>
+						<div class="a_infobox">
+							<div>
+								<span class='a_authorname'></span>
+								<span class='tag' style='vertical-align:middle'>楼主</span>
+								<span class='iconfont icon-message answerbt'></span>
+								<span class='hotbtnum'>5</span>
+								<span class='iconfont icon-dianzanhaopingdamuzhixihuandingzhichixianxing hotbt'></span>
+							</div>
+							<div><span class='hottag'>沙发</span><span class='a_time'></span></div>
+						</div>
+						<div style='clear:both;margin-top:10px;'></div>
+					</div>
+					
+					<div class='a_2_a'>
+						<div class='a2a_user'><span class='a2a_username'></span><span class='a2a_time'></span></div>
+						<div class='a2a_description'></div>
+					</div>
+					<div class='a_description'></div>
+					<div class='a_list'></div>
+				</div>
+			
+			</div>
+			<div class='answerbox'>	
+			</div>
+		</div>
+		<div class='lastanswer' style='display:none;'>bottom</div>
+		<div class='replay'>
+			<div class='inputbox' style='padding-right:40px;transition:all 0.2s;'>
+				<input class='inputbt' placeholder='我也说一句...'>
+				<span class="picbox"><span class='glyphicon glyphicon-picture pic'></span><span class='picnum'>0</span></span>
+				<div class="msgnum"><span class='num'>44</span><span class='iconfont icon-invalid-name'></span></div>
+				<div class='sendbox'><span class='btn btn-success btn-sm replybt'>发送</span></div>
+			</div>
+			<div class='imgview'>
+				<div class='title'>共可选<span class='max'>10</span>张图片</div>
+				<div class='selectbox'>
+					<div class='addpic'>+</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div id='outer2'>
+	<div class='actionbar'>
+		<span class='back'>返回</span>
+		<span class='back2'>返回</span>
+		<span class='outer2_title'>发帖-选择板块</span>
+	</div>
+	<div class='outer2_main'></div>
+</div>
+</body>
+<script src='/static/public/js/jquery.js'></script>
+<script src='/static/public/js/jquery.cookie.js'></script>
+<script src="/static/public/js/jquery.easing.1.3.js"></script>
+<script src='/static/public/swiper/swiper.min.js'></script>
+<script name="main">
+
+jQuery.fn.slideLeftHide = function( speed, callback ) {  
+        this.animate({  
+            width : "hide",  
+            paddingLeft : "hide",  
+            paddingRight : "hide",  
+            marginLeft : "hide",  
+            marginRight : "hide"  
+        }, speed, callback );  
+    };  
+jQuery.fn.slideLeftShow = function( speed, callback ) {  
+	this.animate({  
+		width : "show",  
+		paddingLeft : "show",  
+		paddingRight : "show",  
+		marginLeft : "show",  
+		marginRight : "show"  
+	}, speed, callback );  
+}; 
+function myalert(msg,time){
+	var alertdom = $("<div class='alertbox'>"+msg+"</div>")
+	$("body").append(alertdom)
+	setTimeout(function(){
+		alertdom.fadeOut(300,function(){
+			alertdom.remove()
+		})
+	},time)
+}
+
+
+
+
+
+
+var INTERVAL
+var HSITORYLEN = window.history.length
+function ts_2_dt(ts,h){
+	var date = new Date(ts*1000)
+	var y = date.getFullYear()
+	var m = date.getMonth()+1
+	var d = date.getDate()
+	var dt = y+"-"+m+"-"+d
+	if(h!=0){
+		var hour = date.getHours()
+		var min = date.getMinutes()
+		var sec = date.getSeconds()
+		dt = dt+" "+hour+":"+min+":"+sec
+	}
+	return dt
+}
+function pagechange(hash,r){
+	if(ONTIMEOUT){
+		clearTimeout(TASK)
+		window.history.pushState(null, 'exit',"#"+hash);
+		$(".exittext").remove()
+	}else{
+		var stateobj = {
+			title: 'exit'
+		}
+		window.history.replaceState(null, 'exit',"#"+hash);
+	}
+	
+}
+var stateobj2 = {
+		title: 'exit',
+		url:"#last"
+	};
+window.history.pushState(null, 'exi2t',"#last");
+window.addEventListener('hashchange', function() {
+	if(window.location.hash=='#last'|| window.location.hash==''){
+		if($("#outer2").hasClass('actouter')){
+			$("#outer2").removeClass("actouter")
+		}else{
+			$("#outer").removeClass("actouter")
+		}
+	}
+	if(window.location.hash=='#outeradd' || window.location.hash==''){
+		$("#outer2").removeClass("actouter")
+	}
+})
+var TASK
+var ONTIMEOUT = false
+window.addEventListener('popstate', function(e){
+	if($("#outer").hasClass("actouter")){
+		window.history.pushState(null, 'exit',"#last");
+	}else if($("#outer2").hasClass("actouter")){
+		window.history.pushState(null, 'exit',"#outeradd");
+	}else{
+		clearTimeout(TASK)
+		$('.exittext').remove()
+		if(!e.state){
+			var dom = $("<div class='exittext' >再按一次退出</div>")
+			$('body').append(dom)
+			ONTIMEOUT = true
+			TASK = setTimeout(function(){
+				window.history.pushState(null, 'exit',"#last");
+				ONTIMEOUT = false
+				dom.fadeOut(300,function(){dom.remove()})
+			},1000)
+		}
+	}
+	
+})
+
+
+
+
+
+function touchmove () {
+    document.body.addEventListener('touchmove', function (e) {
+        e.preventDefault()
+    }, {passive: false})
+}
+function untouchmove () {
+    document.body.addEventListener('touchmove', function (e) {
+        window.event.returnValue = true
+    })
+}
+
+function myscroll(el,callback){
+	var lastY = 0
+	var startY = 0
+	var startT = 0
+	var lasttime = 0
+	var out = false
+	el.addEventListener('touchstart', function(event) {
+		startY = event.changedTouches[0].clientY;
+		startT = this.scrollTop
+		out = true
+		lasttime = Date.now(); 
+		lastY = startY
+		$(this).stop()
+	});
+	el.addEventListener('touchmove', function(event) {
+		var y = event.changedTouches[0].clientY - startY
+		$(this).scrollTop(startT-y)
+		if(startT-y>=this.scrollHeight-this.clientHeight){
+			this.style.transition = "none";
+			this.style.transform = 'translateY('+0.2*y+'px)';
+		}
+		out = true
+		var nowTime=Date.now();  
+		if(nowTime-lasttime> 200){
+			lasttime = nowTime;
+			lastY = event.changedTouches[0].clientY
+		}
+	});
+	el.addEventListener('touchend', function(event) {
+		if(this.scrollTop==this.scrollHeight-this.clientHeight){
+			var that = this
+			setTimeout(function(){
+				callback()
+				that.style.transform = 'translateY('+0+'px)';
+			},50)
+			this.style.transition = 'transform .3s';
+			this.style.transform = 'translateY('+0+'px)';
+		}else{
+			var nowTime = Date.now();  
+			var v = (event.changedTouches[0].clientY - lastY) / (nowTime - lasttime);
+			var a = v > 0 ? -1 : 1;
+			v = 2*v
+			var k = a*0.005;
+			var dur = -v/k
+			var starttime = Date.now()
+			var startT = parseInt(this.scrollTop)
+			var that = this
+			out = false
+			function going(){
+				if(out){
+					return
+				}
+				var t = Date.now()-starttime
+				
+				var nowV = v + t*k;
+				if(nowV*a>=-0.02){
+					return
+				}
+				var moveY = (v + nowV)/2 * t;  
+				var top = parseInt(startT - moveY)
+				$(that).scrollTop(top)
+				if(top >=that.scrollHeight-that.clientHeight && v<0 && startT+1<that.scrollHeight-that.clientHeight){
+					setTimeout(function(){callback()},50)
+					
+					return
+				}
+				if(top<=0 || startT+1>=that.scrollHeight-that.clientHeight){
+					return
+				}
+				setTimeout(going,5);  
+			}
+			going()
+		}
+	})
+}
+touchmove()
+document.oncontextmenu=function(e){
+    e.preventDefault();
+};
+$("#outer").find(".addpost").find(".textbox")[0].oncontextmenu=function(e){
+	e.stopPropagation()
+	window.event.returnValue = true
+};
+$("#outer").find(".addpost").find(".subject")[0].oncontextmenu=function(e){
+	e.stopPropagation()
+	window.event.returnValue = true
+};
+</script>
+<script name="homepage">
+
+	$(".addbt").click(function(){
+		addpostfunc(9)
+		pagechange("outer3334444",false)
+		$("#outer").addClass('actouter')
+	})
+	$(".viewbt").click(function(){
+		pagechange("",true)
+		pagechange("outerview",false)
+		viewpostfunc(1,0)
+	})
+</script>
+<script name="forum">
+var RIGHTWIDTH = 90
+var TOPIC = {}
+var MAR = 8
+var Swiper1 = new Swiper('#swiper-container1',{
+	freeMode:true,
+	slidesPerView:'auto',
+	freeModeMomentumRatio:0.5,
+	freeModeMomentumVelocityRatio:3,
+});
+
+
+var Swiper2 = new Swiper('#swiper-container2',{
+	 watchSlidesProgress : true,
+	 resistanceRatio:0
+});
+function reloadmenu(){
+	$("#bar").width($("#swiper-container1").find(".swiper-slide").eq(0).width())
+	$("#bar").offset({"left":MAR})
+	var allmenu = []
+	var allsum = 0
+	Swiper2.off('progress')
+	Swiper2.update()
+	Swiper1.update()
+	$("#swiper-container1").find(".active").each(function(index){
+		allmenu[index] = $(this).width()+2*MAR
+		allsum = allsum+$(this).width()+2*MAR
+	})
+	$("#swiper-container1").find(".active").unbind()
+	$("#swiper-container1").find(".active").each(function(aindex){
+		$(this).click(function(){
+			Swiper2.slideTo(aindex)
+		})
+	})
+	var max = allsum-$(window).width()+RIGHTWIDTH-MAR
+	
+	Swiper2.on("progress",function(progress){
+		if(progress>=0 && progress<=1){
+			var len = Swiper2.slides.length-$("#swiper-container1").find(".inactive").length
+			var index = Math.floor(progress*(len-1))
+			if(index==len-1){
+				var e_w = allmenu[len-1]
+			}else{
+				var e_w = allmenu[index+1]
+			}
+			var s_w = allmenu[index]
+			var p = progress-index/(len-1)
+			var w = s_w+p*(len-1)*(e_w-s_w)
+			$("#bar").width(w-2*MAR)
+			var cx = $(window).width()/2-RIGHTWIDTH/6-w/2
+			var s_x = MAR
+			for(var i =0;i<index;i++){
+				s_x = s_x+allmenu[i]
+			}
+			var lx = s_x+p*(len-1)*s_w
+			$("#bar").css({'left':lx})
+			if(lx<=cx){
+				Swiper1.setTransition(300)
+				Swiper1.setTranslate(0)
+			}else{
+				if(lx-cx>=max){
+					if(max >0){
+						Swiper1.setTransition(300)
+						Swiper1.setTranslate(-max)
+					}
+					
+				}else{
+					Swiper1.setTransition(300)
+					Swiper1.setTranslate(cx-lx)
+				}
+			}
+		}
+	})
+	Swiper2.on("transitionEnd",function(){
+		$("#swiper-container1").find(".actcolor").removeClass('actcolor')
+		$("#swiper-container1").find(".active").eq(Swiper2.activeIndex).addClass('actcolor')
+	})
+}
+function getpostlist(blockid,topicid,timestamp){
+	var more = $(".forum").find(".block"+blockid).attr('data-more')
+	if(more==1 || timestamp==0){
+		$(".forum").find('.morepost').html('精彩即将呈现...')
+		$(".forum").find('.morepost').fadeIn(400)
+		$.post("/api/mobile/getpostlist/",{'blockid':blockid,'topicid':topicid,'timestamp':timestamp},function(req){
+			if(req.code=="0000"){
+				if(timestamp==0){
+					$(".forum").find(".block"+blockid).find(".postinfo").remove()
+					$(".forum").find(".block"+blockid).find(".nomore").remove()
+				}
+				$(".forum").find(".block"+blockid).attr('data-more',req.more)
+				var top = req.top
+				for(var k in top){
+					var hotdom = $(".forum").find(".model").find(".hotpost").clone()
+					if($(".forum").find(".block"+blockid).find('.hotbox').find('#post'+top[k].id).length>0){
+						$(".forum").find(".block"+blockid).find('.hotbox').find('#post'+top[k].id).remove()
+					}
+					hotdom.find(".hotname").html(top[k].subject)
+					hotdom.attr('id','post'+top[k].id)
+					hotdom.attr('data',top[k].id)
+					hotdom.click(function(){
+						var id = $(this).attr('data')
+						viewpostfunc(id,0)
+					})
+					$(".forum").find(".block"+blockid).find('.hotbox').append(hotdom)
+				}
+				var list = req.list
+				for(var i in list){
+					var dom = $(".forum").find(".model").find(".postinfo").clone()
+					if($(".forum").find(".block"+blockid).find('#post'+list[i].id).length>0){
+						$(".forum").find(".block"+blockid).find('#post'+list[i].id).remove()
+					}
+					if(list[i].read>0){
+						dom.addClass('readed')
+					}
+					dom.attr('id','post'+list[i].id)
+					dom.find(".authorname").html(list[i].username)
+					dom.find(".headimg").find('img').attr('src',list[i].headimg)
+					dom.find(".viewnum").html(list[i].hot)
+					dom.attr('data-hot',list[i].hot)
+					dom.find(".marknum").html(list[i].resnum)
+					var ctime = ts_2_dt(list[i].createtime,0)
+					dom.find(".edittime").html(ctime)
+					dom.attr('data',list[i].id)
+					dom.find(".subject").html(list[i].subject)
+					dom.click(function(){
+						var hot = $(this).attr('data-hot')
+						hot = parseInt(hot)+1
+						$(this).find(".viewnum").html(hot)
+						$(this).attr('data-hot',hot)
+						var id = $(this).attr('data')
+						if(!$(this).hasClass('readed')){
+							$(this).addClass('readed')
+						}
+						viewpostfunc(id,0)
+					})
+					$(".forum").find(".block"+blockid).append(dom)
+					if(i==list.length-1){
+						$(".forum").find(".block"+blockid).attr('data-time',list[i].updatetime)
+					}
+				}
+				$(".forum").find('.morepost').fadeOut(400)
+				if(req.more==0){
+					$(".forum").find(".block"+blockid).append("<div class='nomore'>没有更多了</div>")
+				}
+			}
+		})
+	}
+}
+
+
+myscroll($(".forum").find(".blocklist")[0],function(){
+	
+})
+$.post("/api/mobile/getblocklist/",{},function(req){
+	var blocklist = req.list
+	if($.cookie('TOPIC')){
+		TOPIC = JSON.parse($.cookie('TOPIC'))
+	}
+	for(var i in blocklist){
+		if(!TOPIC['block'+blocklist[i].id]){
+			TOPIC['block'+blocklist[i].id] = {}
+			TOPIC['block'+blocklist[i].id]['select'] = -1
+			TOPIC['block'+blocklist[i].id]['checked'] = 1
+			TOPIC['block'+blocklist[i].id]['name'] = blocklist[i].name
+		}
+		TOPIC['block'+blocklist[i].id]['topic'] = blocklist[i].topic
+		if(blocklist[i].topic.length>0){
+			var tmp = 0
+			if(TOPIC['block'+blocklist[i].id]['select']>=0){
+				for(var t in blocklist[i].topic){
+					if(TOPIC['block'+blocklist[i].id]['select']==blocklist[i].topic[t].id){
+						tmp=1
+						break;
+					}
+				}
+			}
+			if(tmp==0){
+				TOPIC['block'+blocklist[i].id]['select']=0
+			}
+		}
+		$.cookie('TOPIC', JSON.stringify(TOPIC), { expires: 7 });
+		var blockdom = $(".forum").find(".blocklist").find(".blockmodel").find("tr").clone()
+		blockdom.attr('data',blocklist[i].id)
+		blockdom.find(".block_name").html(blocklist[i].name)
+		blockdom.find(".block_description").html(blocklist[i].description)
+		if(TOPIC['block'+blocklist[i].id]['checked']==1){
+			blockdom.find(".checkview").addClass('actcheck')
+		}
+		blockdom.find(".checkview").attr('data-index',i)
+		
+		blockdom.find(".checkview").click(function(){
+			var checked = !$(this).hasClass('actcheck')
+			var index = $(this).attr('data-index')
+			var bid = $(this).parent().parent().attr('data')
+			if(checked){
+				$(this).addClass('actcheck')
+				TOPIC['block'+bid]['checked'] = 1
+				$("#swiper-container1").find(".swiper-slide").eq(index).addClass('active')
+				$("#swiper-container1").find(".swiper-slide").eq(index).removeClass('inactive')
+				$("#swiper-container2").find(".swiper-slide").eq(index).removeClass('inactive')
+				reloadmenu()
+				$("#swiper-container1").find(".actcolor").click()
+			}else{
+				TOPIC['block'+bid]['checked'] = 0
+				$(this).removeClass('actcheck')
+				$("#swiper-container1").find(".swiper-slide").eq(index).addClass('inactive')
+				$("#swiper-container1").find(".swiper-slide").eq(index).removeClass('active')
+				$("#swiper-container2").find(".swiper-slide").eq(index).addClass('inactive')
+				var isact = $("#swiper-container1").find(".swiper-slide").eq(index).hasClass('actcolor')
+				reloadmenu()
+				if(isact){
+					$("#swiper-container1").find(".actcolor").removeClass('actcolor')
+					Swiper2.slideTo(0)
+					$("#swiper-container1").find(".active").eq(0).addClass('actcolor')
+				}else{
+					$("#swiper-container1").find(".actcolor").click()
+				}
+			}
+			$.cookie('TOPIC', JSON.stringify(TOPIC), { expires: 7 });
+		})
+		blockdom.find(".block_info").click(function(){
+			var index = $(this).parent().find(".checkview").attr("data-index")
+			if($(this).parent().find(".actcheck").length==0){
+				$(this).parent().find(".checkview").click()
+			}
+			var aindex = $("#swiper-container1").find(".swiper-slide").eq(index).prevAll('.active').length
+			setTimeout(function(){
+				Swiper2.slideTo(aindex)
+			},100)
+			
+			$(".forum").find(".blocklist").removeClass("actblock")
+			$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+			
+		})
+		$(".forum").find(".blocklist").find(".block_table").append(blockdom)
+		var s1dom = $('<div class="swiper-slide">'+blocklist[i].name+'</div>')
+		var s2dom = $('<div data='+blocklist[i].id+' class="swiper-slide block'+blocklist[i].id+'"><div class="hotbox acthotbox"></div><div class="morehot"><span class="glyphicon glyphicon-menu-down"></span></div></div>')
+		s2dom.attr('data-more',1)
+		s2dom.find(".morehot").click(function(){
+			if($(this).hasClass('actmorehot')){
+				$(this).parent().find(".hotbox").addClass('acthotbox')
+				$(this).removeClass('actmorehot')
+			}else{
+				$(this).parent().find(".hotbox").removeClass('acthotbox')
+				$(this).addClass('actmorehot')
+			}
+			
+		})
+		if(TOPIC['block'+blocklist[i].id]['checked']==1){
+			s1dom.addClass('active')
+		}else{
+			s1dom.addClass('inactive')
+			s2dom.addClass('inactive')
+		}
+		
+		s2dom.attr('data',blocklist[i].id)
+		var draw = s2dom[0]
+		var startY = 0;
+		var startX=0
+		var maxMove = 1000;
+		var lasttime = 0
+		var startT = 0
+		var lastY = 0
+		var out = false
+		draw.addEventListener('touchstart', function(event) {
+			$(".forum").find('.backinfo').html('下拉更多精彩')
+			startY = event.changedTouches[0].clientY;
+			startX = event.changedTouches[0].clientX;
+			startT = this.scrollTop
+			out = true
+			lasttime = Date.now(); 
+			lastY = startY
+		});
+		draw.addEventListener('touchmove', function(event) {
+			var y = event.changedTouches[0].clientY - startY <= maxMove ? event.changedTouches[0].clientY - startY : maxMove;
+			var x = event.changedTouches[0].clientX - startX
+			if(y>0 && this.scrollTop==0){
+				$(".forum").find('.backinfo').show()
+				if(Math.abs(x/y)<0.4){
+					this.style.transition = "none";
+					this.style.transform = 'translateY('+0.2*y+'px)';
+				}
+				if(y>=200){
+					$(".forum").find('.backinfo').html('释放更多精彩')
+				}
+			}else{
+				if(this.scrollTop == this.scrollHeight-this.clientHeight){
+					this.style.transition = "none";
+					this.style.transform = 'translateY('+0.2*y+'px)';
+				}
+				$(".forum").find('.backinfo').hide()
+				$(this).scrollTop(startT-y)
+			}
+			out = true
+			var nowTime=Date.now();  
+			if(nowTime-lasttime> 300) {  
+				lasttime = nowTime;
+				lastY = event.changedTouches[0].clientY
+			}
+		});
+		draw.addEventListener('touchend', function(event) {
+			var id = $(this).attr('data')
+			if(this.scrollTop==0){
+				var y = event.changedTouches[0].clientY - startY
+				var x = event.changedTouches[0].clientX - startX
+				if(event.changedTouches[0].clientY - startY>200 && Math.abs(x/y)<0.4){
+					var that = this
+					$(".forum").find('.backinfo').html('精彩即将呈现')
+					this.style.transition = 'transform .3s';
+					this.style.transform = 'translateY('+30+'px)';
+					setTimeout(function(){
+						that.style.transform = 'translateY('+0+'px)';
+					},600)
+					getpostlist(id,TOPIC['block'+id]['select'],0)
+				}else{
+					this.style.transition = 'transform .3s';
+					this.style.transform = 'translateY('+0+'px)';
+				}
+			}else{
+				if(this.scrollTop==this.scrollHeight-this.clientHeight){
+					var y = event.changedTouches[0].clientY - startY
+					var x = event.changedTouches[0].clientX - startX
+					var that = this
+					this.style.transition = 'transform .3s';
+					this.style.transform = 'translateY('+0+'px)';
+					setTimeout(function(){
+						getpostlist(id,TOPIC['block'+id]['select'],$(that).attr('data-time'))
+					},50)
+				}else{
+					var nowTime = Date.now();  
+					var v = (event.changedTouches[0].clientY - lastY) / (nowTime - lasttime);
+					var a = v > 0 ? -1 : 1;
+					if(Math.abs(v)>1){
+						v = 2*v
+					}
+					
+					var k = a*0.005;
+					var starttime = Date.now()
+					var startT = parseInt(this.scrollTop)
+					var that = this
+					out = false
+					function going(){
+						if(out){
+							return
+						}
+						var t = Date.now()-starttime
+						var nowV = v + t*k;
+						if(nowV*a>=-0.02){
+							return
+						}
+						var moveY = (v + nowV)/2 * t;  
+						var top = parseInt(startT - moveY)
+						$(that).scrollTop(top)
+						if(top >=that.scrollHeight-that.clientHeight && v<0 && startT+1<that.scrollHeight-that.clientHeight){
+							setTimeout(function(){
+								getpostlist(id,TOPIC['block'+id]['select'],$(that).attr('data-time'))
+							},50)
+							return
+						}
+						if(top<=0 || startT+1>=that.scrollHeight-that.clientHeight){
+							return
+						}
+						setTimeout(going,5);  
+					}
+					going()
+				}
+			}
+			
+		});
+		$("#swiper-container1").find(".swiper-wrapper").append(s1dom)
+		$("#swiper-container2").find(".swiper-wrapper").append(s2dom)
+		getpostlist(blocklist[i].id,TOPIC['block'+blocklist[i].id]['select'],0)
+	}
+	$("#swiper-container1").find(".active").eq(0).addClass('actcolor')
+	reloadmenu()
+})
+
+
+
+
+$(".forum").find(".selectmenu").find('.up').click(function(){
+	if($(".forum").find(".blocklist").hasClass("actblock")){
+		$(".forum").find(".blocklist").removeClass("actblock")
+		$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+	}else{
+		$(".forum").find(".blocklist").addClass("actblock")
+		$(".forum").find(".topiclist").removeClass("acttopic")
+		$(".forum").find(".selecttopic").find('.icon-caidan').removeClass("rotate")
+		$(".forum").find(".selectmenu").find('.up').addClass('actup')
+	}
+})
+$(".forum").find(".block_table").click(function(event){
+	event.stopPropagation()
+})
+$(".forum").find(".blocklist").click(function(){
+	$(".forum").find(".blocklist").removeClass("actblock")
+	$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+})
+
+
+
+
+$(".forum").find(".selecttopic").find('.icon-caidan').click(function(){
+	if($(this).hasClass("rotate")){
+		$(".forum").find(".topiclist").removeClass("acttopic")
+		$(this).removeClass("rotate")
+	}else{
+		var bid = $("#swiper-container2").find('.swiper-slide-active').attr('data')
+		var topic = TOPIC['block'+bid]['topic']
+		$(".forum").find(".topiclist").find(".topicbt").remove()
+		if(topic.length>0){
+			var topicdom = $("<span class='topicbt acttopicbt' data-block="+bid+" data-topic=0>全部主题</span>")
+			topicdom.click(function(){
+				if(!$(this).hasClass('acttopicbt')){
+					$(this).addClass('acttopicbt')
+					var bid2 =  $(this).attr('data-block')
+					var tid2 =  $(this).attr('data-topic')
+					getpostlist(bid2,tid2,0)
+					TOPIC['block'+bid2]['select'] = tid2
+					$.cookie('TOPIC', JSON.stringify(TOPIC), { expires: 7 });
+					$(".forum").find(".topiclist").removeClass("acttopic")
+					$(".forum").find(".selecttopic").find('.icon-caidan').removeClass("rotate")
+					$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+				}
+			})
+			$(".forum").find(".topiclist").find(".topicselect").append(topicdom)
+			for(var i in topic){
+				var topicdom = $("<span class='topicbt' data-block="+bid+" data-topic="+topic[i].id+">"+topic[i].name+"</span>")
+				if(topic[i].id==TOPIC['block'+bid]['select']){
+					$(".forum").find(".topiclist").find(".acttopicbt").removeClass('acttopicbt')
+					topicdom.addClass("acttopicbt")
+				}
+				topicdom.click(function(){
+					if(!$(this).hasClass('acttopicbt')){
+						$(this).addClass('acttopicbt')
+						var bid2 =  $(this).attr('data-block')
+						var tid2 =  $(this).attr('data-topic')
+						getpostlist(bid2,tid2,0)
+						TOPIC['block'+bid2]['select'] = tid2
+						$.cookie('TOPIC', JSON.stringify(TOPIC), { expires: 7 });
+						$(".forum").find(".topiclist").removeClass("acttopic")
+						$(".forum").find(".selecttopic").find('.icon-caidan').removeClass("rotate")
+						$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+					}
+				})
+				$(".forum").find(".topiclist").find(".topicselect").append(topicdom)
+			}
+			$(".forum").find(".topiclist").addClass("acttopic")
+			$(this).addClass("rotate")
+		}
+		$(".forum").find(".blocklist").removeClass("actblock")
+		$(".forum").find(".selectmenu").find('.up').removeClass('actup')
+	}
+	
+})
+$(".forum").find(".topiclist").click(function(){
+	$(".forum").find(".topiclist").removeClass("acttopic")
+	$(".forum").find(".rotate").removeClass("rotate")
+})
+$(".forum").find(".topicselect").click(function(event){
+	event.stopPropagation()
+})
+$(".forum").find(".addpostbt").click(function(){
+	var bid = $("#swiper-container2").find(".swiper-slide-active").attr('data')
+	var topicid = TOPIC['block'+bid]['select']
+	addpostfunc(bid,topicid)
+	pagechange('outeradd',false)
+	$("#outer").addClass('actouter')
+})
+
+</script>
+<script name="footer">
+	$("#footer").find(".menu").click(function(){
+		//$(".actmenu").removeClass('actmenu')
+		//$(this).addClass('actmenu')
+		//var name = $(this).attr('data')
+		//$(".actpage").removeClass('actpage')
+		//$("."+name).addClass('actpage')
+		if($(this).attr('data')!='forum')
+		myalert('敬请期待...',500)
+	})
+</script>
+<script name="outer_addpost">
+var filelist = {'num':0}
+
+var addpost = $("#outer").find('.addpost')
+myscroll(addpost.find(".textbox")[0])
+addpost.find(".pic").click(function(){
+	var input = $("<input class='fileselect' type='file'>")
+	input.change(function(e){
+		var files = e.target.files || e.dataTransfer.files;
+		var freader = new FileReader();
+		var thisnum = filelist['num']+1
+		filelist['num'] = filelist['num']+1
+		filelist["uploadimg"+thisnum] = files[0]
+		freader.readAsDataURL(files[0])
+		freader.onload=function(c){
+			var IMG = new Image()
+			IMG.src = this.result;
+			filedata = c.target.result
+			var img = $("<div class='addimgview' contenteditable='false' id='uploadimg"+thisnum+"' style='background-image:url("+filedata+");'></div>")
+			img.click(function(){
+				var selection = getSelection()
+				if(selection.anchorNode.className=='textbox'){
+					var range = document.createRange()
+					if(selection.anchorNode.childNodes.length>selection.anchorOffset+1){
+						if($(selection.anchorNode.childNodes[selection.anchorOffset+1]).hasClass('addimgview')){
+							$(this).after("<div><br></div>")
+						}
+					}else{
+						$(this).after("<div><br></div>")
+						
+					}
+					range.selectNodeContents(selection.anchorNode.childNodes[selection.anchorOffset+1])
+					range.setStart(selection.anchorNode.childNodes[selection.anchorOffset+1],0)
+					range.collapse(true)
+					selection.removeAllRanges()
+					selection.addRange(range)
+				}
+			})
+			IMG.onload = function(){
+				var w = addpost.find(".textbox").width()
+				var iw = this.width
+				var ih = this.height
+				img.width(w)
+				img.height(ih*w/iw)
+			}
+			var selection = getSelection()
+			if(lastnode){
+				$(lastnode).after(img)
+				img.after("<div><br></div>")
+			}else{
+				addpost.find(".textbox").append(img)
+				addpost.find(".textbox").append("<div><br></div>")
+			}
+			
+		}
+	})
+	input.click()
+	addpost.append(input)
+})
+var lastnode;
+addpost.find(".textbox").blur(
+	function(){
+		var selection = getSelection()
+		lastnode = selection.getRangeAt(0)
+		if(!$(lastnode.commonAncestorContainer).hasClass('textbox')){
+			lastnode = lastnode.commonAncestorContainer
+		}else{
+			lastnode=null
+		}	
+	}
+)
+
+var wheight = $(window).height()
+addpost.find(".textbox").css('height',wheight-150)
+function addpostfunc(bid,tid){
+	clearInterval(INTERVAL)
+	$("#outer").find(".subpage").hide()
+	addpost.show()
+	//服务记录自动添加模板
+	if(bid==1){
+		if($("#service_time").length==0){
+			var servicebox = $("<div class='sevicebox'>服务时间(小时)：<input type='text' id='service_time'></div>")
+			servicebox.keyup(function(){
+				var v = $(this).find("#service_time").val()
+				$(this).find("#service_time").val(v.replace(/[^\d]/g,''))
+			})
+			addpost.find(".textbox").prepend(servicebox)
+			servicebox.after("<div></br></div>")
+		}
+		addpost.find(".placeholder").hide()
+	}else{
+		addpost.find(".textbox").find(".sevicebox").eq(0).remove()
+	}
+	addpost.find('.fileselect').remove()
+	addpost.find(".blockbt").find('.block').html(TOPIC['block'+bid]['name'])
+	addpost.find(".blockbt").attr('data',bid)
+	if(tid==-1){
+		addpost.find(".topicbt").hide()
+	}else{
+		addpost.find(".topicbt").show()
+		addpost.find(".topicbt").attr('data',TOPIC['block'+bid]['topic'][0].id)
+		console.log(TOPIC['block'+bid]['topic'][0].id)
+		addpost.find(".topicbt").find('.topic').html(TOPIC['block'+bid]['topic'][0].name)
+	}
+	if(tid!=0){
+		addpost.find(".topicbt").attr('data',tid)
+	}
+	INTERVAL = setInterval(function(){
+		var wh = $(window).height()
+		if(wh!=wheight){
+			wheight = wh
+			addpost.find(".textbox").css('height',wh-150)
+		}
+	},500)
+}
+addpost.find(".textbox").focus(function(){
+	addpost.find(".placeholder").hide()
+})
+addpost.find(".textbox").blur(function(){
+	if($(this).html()==""){
+		addpost.find(".placeholder").show()
+	}
+})
+addpost.find('.back').click(function(){
+	clearInterval(INTERVAL)
+	pagechange('last',true)
+	$("#outer").removeClass('actouter')
+})
+
+function upload(file,id){
+	var formdata = new FormData();
+	formdata.append('file',file);
+	$.ajax({
+		url:'/api/mobile/upload/',
+		type:'post',
+		data: formdata,
+		async:false,
+		contentType: false,
+		processData: false,
+		success:function(res){
+			if(res.code=="0000"){
+				$("#"+id).removeAttr('style')
+				$("#"+id).removeAttr('contenteditable')
+				$("#"+id).html('<img src="'+res.path+'" style="width:100%">')
+				$("#"+id).removeAttr('id')
+			}
+		}
+	})
+}
+addpost.find('.send').click(function(){
+	var imgs = $("#outer").find('.addpost').find(".textbox").find('.addimgview')
+	$("#outer").find('.sending').show()
+	for(var i=0;i<imgs.length;i++){
+		var imgid = imgs.eq(i).attr('id')
+		if(filelist.hasOwnProperty(imgid)){
+			var file = filelist[imgid]
+			upload(file,imgid)
+		}
+	}
+	filelist = {'num':filelist['num']}
+	addpost.find('.fileselect').remove()
+	var subject = addpost.find(".subject").val()
+	var description = addpost.find('.textbox').html()
+	var block = addpost.find('.blockbt').attr('data')
+	var topic = addpost.find('.topicbt').attr('data')
+	var nextloop = true
+	var msg = "有必填项目未填写"
+	if(topic==1){
+		if($("#service_time").length==0){
+			nextloop = false
+			msg = "服务时间未添加"
+			var servicebox = $("<div class='sevicebox'>服务时间(小时)：<input type='text' id='service_time'></div>")
+			servicebox.keyup(function(){
+				var v = $(this).val()
+				$(this).val(v.replace(/[^\d\.]/g,''))
+			})
+			addpost.find(".textbox").prepend(servicebox)
+			servicebox.after("<div></br></div>")
+			servicebox.focus()
+			addpost.find(".placeholder").hide()
+		}else{
+			var s_time = $("#service_time").val()
+			if(s_time==""){
+				nextloop = false
+				msg = "请填写服务时间"
+				$("#service_time").focus()
+			}
+		}
+	}
+	var s_time = $("#service_time").val()
+	if(subject!="" && description!="" && block !='' && nextloop){
+		$.post("/api/mobile/addpost/",{'subject':subject,'description':description,'block':block,'topic':topic,'stime':s_time},function(req){
+			if(req.code=="0000"){
+				addpost.find(".subject").val("")
+				addpost.find('.textbox').html('')
+				addpost.find('.block').removeAttr('data')
+				addpost.find('.topic').removeAttr('data')
+				clearInterval(INTERVAL)
+				pagechange('last',true)
+				$("#outer").find('.sending').hide()
+				$("#outer").removeClass('actouter')
+			}
+		})
+	}else{
+		$("#outer").find('.sending').hide()
+		myalert(msg,500)
+	}
+})
+addpost.find('.blockbt').click(function(){
+	$("#outer2").find(".outer2_main").find(".b_t_box").remove()
+	$("#outer2").find(".back").show()
+	$("#outer2").find(".back2").hide()
+	$("#outer2").find('.outer2_title').html("发帖-选择板块")
+	var sbid = $(this).attr('data')
+	for(var key in TOPIC){
+		var bid = key.replace('block','')
+		var bdom = $("<div class='b_t_box' data="+bid+">"+TOPIC[key]['name']+"</div>")
+		bdom.click(function(){
+			var bid2 = $(this).attr('data')
+			if(TOPIC['block'+bid2]['topic'].length>0){
+				var topic = TOPIC['block'+bid2]['topic']
+				if(bid2!=sbid){
+					addpost.find('.topicbt').find('.topic').html(topic[0].name)
+					addpost.find('.topicbt').attr('data',topic[0].id)
+					if(topic[0].id==1){
+						if($("#service_time").length==0){
+							var servicebox = $("<div class='sevicebox'>服务时间(小时)：<input type='text' id='service_time'></div>")
+							servicebox.keyup(function(){
+								var v = $(this).val()
+								$(this).val(v.replace(/[^\d\.]/g,''))
+							})
+							addpost.find(".textbox").prepend(servicebox)
+							servicebox.after("<div></br></div>")
+							servicebox.focus()
+							addpost.find(".placeholder").hide()
+						}
+					}else{
+						addpost.find(".textbox").find(".sevicebox").eq(0).remove()
+					}
+				}
+				$("#outer2").find(".outer2_main").find(".b_t_box").remove()
+				$("#outer2").find(".back").hide()
+				$("#outer2").find(".back2").show()
+				$("#outer2").find('.outer2_title').html(TOPIC['block'+bid2]['name']+"-选择分类")
+				var stid = addpost.find('.topicbt').attr('data')
+				for(var j in topic){
+					var tdom = $("<div class='b_t_box' data="+topic[j].id+">"+topic[j].name+"</div>")
+					tdom.click(function(){
+						var tid = $(this).attr('data')
+						var tname = $(this).html()
+						addpost.find('.topicbt').attr('data',tid)
+						if(tid==1){
+							if($("#service_time").length==0){
+								var servicebox = $("<div class='sevicebox'>服务时间(小时)：<input type='text' id='service_time'></div>")
+								servicebox.keyup(function(){
+									var v = $(this).val()
+									$(this).val(v.replace(/[^\d\.]/g,''))
+								})
+								addpost.find(".textbox").prepend(servicebox)
+								servicebox.after("<div></br></div>")
+								servicebox.focus()
+								addpost.find(".placeholder").hide()
+								
+							}
+						}else{
+							addpost.find(".textbox").find(".sevicebox").eq(0).remove()
+						}
+						addpost.find('.topicbt').find('.topic').html(tname)
+						pagechange('outeradd',true)
+						$("#outer2").removeClass("actouter")
+					})
+					if(topic[j].id==stid){
+						var tdom2 = $("<div class='b_t_box act_b_t_box' data="+topic[j].id+">当前："+addpost.find('.blockbt').find('.block').html()+"->"+topic[j].name+"</div>")
+						$("#outer2").find(".outer2_main").prepend(tdom2)
+					}
+					$("#outer2").find(".outer2_main").append(tdom)
+				}
+				addpost.find('.topicbt').show()
+			}else{
+				pagechange('outeradd',true)
+				$("#outer2").removeClass("actouter")
+				addpost.find('.topicbt').hide()
+				addpost.find(".textbox").find(".sevicebox").eq(0).remove()
+			}
+			addpost.find('.blockbt').attr('data',bid2)
+			addpost.find('.blockbt').find('.block').html(TOPIC['block'+bid2]['name'])
+		})
+		$("#outer2").find(".outer2_main").append(bdom)
+		if(bid==sbid){
+			var dom2 = $("<div class='b_t_box act_b_t_box' data="+bid+">当前："+TOPIC[key]['name']+"</div>")
+			$("#outer2").find(".outer2_main").prepend(dom2)
+		}
+	}
+	pagechange('outer2block',true)
+	$("#outer2").addClass("actouter")
+})
+addpost.find('.topicbt').click(function(){
+	var bid = addpost.find('.blockbt').attr('data')
+	if(TOPIC['block'+bid]['topic'].length>0){
+		var topic = TOPIC['block'+bid]['topic']
+		$("#outer2").find(".outer2_main").find(".b_t_box").remove()
+		$("#outer2").find(".back").show()
+		$("#outer2").find(".back2").hide()
+		$("#outer2").find('.outer2_title').html(TOPIC['block'+bid]['name']+"-选择分类")
+		var stid = addpost.find('.topicbt').attr('data')
+		for(var j in topic){
+			var tdom = $("<div class='b_t_box' data="+topic[j].id+">"+topic[j].name+"</div>")
+			tdom.click(function(){
+				var tid = $(this).attr('data')
+				if(tid==1){
+					if($("#service_time").length==0){
+						var servicebox = $("<div class='sevicebox'>服务时间(小时)：<input type='text' id='service_time'></div>")
+						servicebox.keyup(function(){
+							var v = $(this).val()
+							$(this).val(v.replace(/[^\d\.]/g,''))
+						})
+						addpost.find(".textbox").prepend(servicebox)
+						servicebox.after("<div></br></div>")
+						servicebox.focus()
+						addpost.find(".placeholder").hide()
+					}
+				}else{
+					addpost.find(".textbox").find(".sevicebox").eq(0).remove()
+				}
+				var tname = $(this).html()
+				addpost.find('.topicbt').attr('data',tid)
+				addpost.find('.topicbt').find('.topic').html(tname)
+				pagechange('outeradd',true)
+				$("#outer2").removeClass("actouter")
+			})
+			if(topic[j].id==stid){
+				var tdom2 = $("<div class='b_t_box act_b_t_box' data="+topic[j].id+">当前："+addpost.find('.blockbt').find('.block').html()+"->"+topic[j].name+"</div>")
+				$("#outer2").find(".outer2_main").prepend(tdom2)
+			}
+			$("#outer2").find(".outer2_main").append(tdom)
+		}
+		pagechange('outer2topic',true)
+		$("#outer2").addClass("actouter")
+	}
+	
+})
+</script>
+<script name='outer2'>
+	$("#outer2").find(".back").click(function(){
+		pagechange('outeradd',true)
+		$("#outer2").removeClass("actouter")
+	})
+	$("#outer2").find(".back2").click(function(){
+		pagechange('outeradd',true)
+		$("#outer2").removeClass("actouter")
+	})
+</script>
+<script name="outer_viewpost">
+var wheight = $(window).height()
+var filelist1 = {'num':0}
+function fillanswer(alist){
+	var authorid = $("#outer").find(".viewpost").find(".authorname").attr('data-authorid')
+	for(var i in alist){
+		var adom = $("#outer").find(".viewpost").find(".answermodel").find(".a_box").clone()
+		adom.addClass('a_box'+alist[i].id)
+		adom.find('.a_authorname').html(alist[i].authorname)
+		adom.find('.a_headimg').find('img').attr('src',alist[i].headimg)
+		adom.find('.a_time').html(ts_2_dt(alist[i].createtime,1))
+		adom.find('.a_description').append("<div>"+alist[i].description+"</div>")
+		if(alist[i].up==0){
+			adom.find(".hotbtnum").css('visibility','hidden')
+			var hottag = ['沙发','板凳','地板']
+			if(alist[i].floor<4){
+				adom.find(".hottag").html(hottag[alist[i].floor-1])
+			}else{
+				adom.find(".hottag").html("第"+alist[i].floor+"楼")
+			}
+		}else{
+			adom.find(".hottag").addClass('acthottag')
+			adom.find(".hottag").html("推荐")
+		}
+		if(authorid!=alist[i].authorid){
+			adom.find('.tag').hide()
+		}
+		adom.find(".hotbtnum").html(alist[i].up)
+		for(var j in alist[i].imgs){
+			adom.find('.a_description').append("<div><img src='"+alist[i].imgs[j]+"' style='width:100%;'></div>")
+		}
+		if(alist[i].answerid){
+			adom.find('.a_2_a').show()
+			adom.find('.a_2_a').find(".a2a_username").html(alist[i].answerid.authorname)
+			adom.find('.a_2_a').find(".a2a_time").html(' 发表于 '+ts_2_dt(alist[i].answerid.createtime,1))
+			adom.find('.a_2_a').find(".a2a_description").html(alist[i].answerid.description)
+		}else{
+			adom.find('.a_2_a').hide()
+		}
+		if(alist[i].tome.length>0){
+			adom.find('.a_list').show()
+			var tome = alist[i].tome
+			for(var t in tome){
+				var tomedom = $("<div style='padding:2px 5px;'><span class='tomename'>"+tome[t].authorname+"：</span>"+tome[t].description+"<span class='tometime'>"+ts_2_dt(tome[t].createtime,1)+"</span></div>")
+				adom.find('.a_list').append(tomedom)
+			}
+		}else{
+			adom.find('.a_list').hide()
+		}
+		adom.find(".answerbt").attr('data',alist[i].id)
+		adom.find(".answerbt").attr('data-floor',alist[i].floor)
+		adom.find(".answerbt").click(function(event){
+			event.stopPropagation()
+			$("#outer").find('.viewpost').find('.inputbt').focus()
+			$("#outer").find('.viewpost').find('.inputbt').attr('placeholder','回复'+$(this).attr('data-floor')+'楼 '+$(this).parent().find('.a_authorname').html())
+			$("#outer").find('.viewpost').find('.replybt').attr('data-answer',$(this).attr('data'))
+		})
+		if(alist[i].uped){
+			adom.find('.hotbt').addClass('acthotbt')
+			adom.find('.hotbt').removeClass('icon-dianzanhaopingdamuzhixihuandingzhichimianxing')
+			adom.find('.hotbt').addClass('icon-dianzanhaopingdamuzhixihuandingzhichixianxing')
+		}
+		adom.find('.hotbt').click(function(){
+			if(!$(this).hasClass('acthotbt')){
+				var aid = $(this).parent().find('.answerbt').attr('data')
+				var that = this
+				$.post('/api/mobile/upanswer/',{'answer':aid},function(req){
+					if(req.code=="0000"){
+						$(that).addClass('acthotbt')
+						$(that).removeClass('icon-dianzanhaopingdamuzhixihuandingzhichixianxing')
+						$(that).addClass('icon-dianzanhaopingdamuzhixihuandingzhichimianxing')
+						var num = parseInt($(that).parent().find(".hotbtnum").html())+1
+						$(that).parent().find(".hotbtnum").html(num)
+						$(that).parent().find(".hotbtnum").css('visibility','visible')	
+					}
+				})
+			}	
+		})
+		$("#outer").find(".viewpost").find(".answerbox").append(adom)
+	}
+}
+
+$("#outer").find(".viewpost").find('.upbox').find(".uppost").click(function(){
+	var pid = viewpost.attr('data-id')
+	var that = this
+	$.post("/api/mobile/uppost/",{'post':pid},function(req){
+		if(req.code=="0000"){
+			var num = parseInt($(that).parent().find(".uppostnum").html())+1
+			$(that).parent().find(".uppostnum").html(num)
+			$(that).parent().find(".uppostnum").css('display','block')
+			$(that).addClass('actuppost')
+			$(that).removeClass('icon-dianzanhaopingdamuzhixihuandingzhichixianxing')
+			$(that).addClass('icon-dianzanhaopingdamuzhixihuandingzhichimianxing')
+		}
+	})
+})
+
+function getpostinfo(id){
+	$.post("/api/mobile/getpost/",{'id':id},function(req){
+		if(req.code=="0000"){
+			var post = req.info
+			viewpost.find('.subject').html(post.subject)
+			viewpost.find('.authorname').html(post.username)
+			viewpost.find('.authorname').attr('data-authorid',post.authorid)
+			viewpost.find('.edittime').html(ts_2_dt(post.createtime,1))
+			viewpost.find('.textbox').html(post.description)
+			viewpost.find(".author").find(".headimg").find('img').attr('src',post.headimg)
+			if(post.uped>0){
+				viewpost.find('.upbox').find(".uppost").addClass('actuppost')
+				viewpost.find('.upbox').find(".uppost").removeClass('icon-dianzanhaopingdamuzhixihuandingzhichixianxing')
+				viewpost.find('.upbox').find(".uppost").addClass('icon-dianzanhaopingdamuzhixihuandingzhichimianxing')
+			}
+			
+			if(post.up>0){
+				viewpost.find('.upbox').find(".uppostnum").css('display','block')
+			}
+			viewpost.find('.upbox').find(".uppostnum").html(post.up)
+			viewpost.find(".author").show()
+			viewpost.attr('data-id',id)
+			if(post.resnum==0){
+				viewpost.find(".replay").find(".num").hide()
+			}
+			viewpost.find(".replay").find(".num").html(post.resnum)
+			var alist = req.answer
+			viewpost.attr('data-start',alist.length)
+			fillanswer(alist)
+		}
+	})
+}
+
+$("#outer").find('.viewpost').find(".replay").click(function(event){
+	event.stopPropagation()
+})
+$("#outer").find('.viewpost').click(function(){
+	viewpost.find('.imgview').height(0)
+	$("#outer").find('.viewpost').find('.inputbt').attr('placeholder','我也说一句...')
+	$("#outer").find('.viewpost').find('.replybt').removeAttr('data-answer')
+
+})
+
+
+function viewpostfunc(id){
+	var viewpost = $("#outer").find('.viewpost')
+	viewpost.find(".lastanswer").hide()
+	viewpost.append(viewpost.find(".lastanswer"))
+	$("#outer").find(".viewpost").removeClass('nomore')
+	viewpost.find(".inputbt").val("")
+	viewpost.find(".picnum").hide()
+	filelist1 = {'num':0}
+	viewpost.find(".imgdiv").remove()
+	viewpost.find(".uppostnum").hide()
+	viewpost.find(".actuppost").removeClass('actuppost')
+	viewpost.find('.imgview').height(0)
+	viewpost.find(".fileselect").remove()
+	viewpost.find(".replybt").attr('data',id)
+	viewpost.find('.replybt').removeAttr('data-answer')
+	viewpost.find(".answerbox").find(".a_box").remove()
+	viewpost.find(".author").hide()
+	viewpost.removeAttr('data')
+	viewpost.removeAttr('data-star')
+
+	if($("#outer").hasClass('actouter')){
+		getpostinfo(id)
+	}else{
+		$("#outer").find(".subpage").hide()
+		viewpost.show()
+		viewpost.find('.subject').html("")
+		viewpost.find('.textbox').html("")
+		pagechange('outerview',false)
+		$("#outer").addClass('actouter')
+		setTimeout(function(){getpostinfo(id)},300)
+	}
+	clearInterval(INTERVAL)
+	INTERVAL = setInterval(function(){
+		var i_num = viewpost.find(".picnum").html()
+		var msg = viewpost.find(".inputbt").val()
+		if(msg!=''||i_num>0){
+			viewpost.find(".sendbox").slideLeftShow(200)
+			viewpost.find(".inputbox").css('padding-right','50px')
+			viewpost.find(".msgnum").hide()
+		}else{
+			viewpost.find(".msgnum").show()
+			viewpost.find(".inputbox").css('padding-right','40px')
+			viewpost.find(".sendbox").slideLeftHide(200)
+		}
+	},300)
+}
+function getmoreanswer(pid,start){
+	var s_index = parseInt(viewpost.attr('data-start'))
+	$("#outer").find(".viewpost").find(".lastanswer").html('精彩即将呈现...')
+	$("#outer").find(".viewpost").find(".lastanswer").addClass('actlastanswer')
+	$("#outer").find(".viewpost").find(".lastanswer").show()
+	$("#outer").find(".viewpost").append($("#outer").find(".viewpost").find(".lastanswer"))
+	var authorid = $("#outer").find(".viewpost").find(".authorname").attr('data-authorid')
+	if(s_index>=10 && !$("#outer").find(".viewpost").hasClass('nomore')){
+		$.ajax({
+			url:'/api/mobile/getanswers/',
+			type:'post',
+			data: {'post':pid,'start':start},
+			async:false,
+			success:function(res){
+				if(res.code=="0000"){
+					var alist = res.list
+					viewpost.attr('data-start',s_index+alist.length)
+					fillanswer(alist)
+					$("#outer").find(".viewpost").append($("#outer").find(".viewpost").find(".lastanswer"))
+					$("#outer").find(".viewpost").find(".lastanswer").fadeOut(400)
+				}else if(res.code=='0002'){
+					$("#outer").find(".viewpost").append($("#outer").find(".viewpost").find(".lastanswer"))
+					$("#outer").find(".viewpost").find(".lastanswer").fadeOut(400)
+					setTimeout(function(){
+						$("#outer").find(".viewpost").find(".lastanswer").removeClass('actlastanswer')
+						$("#outer").find(".viewpost").addClass('nomore')
+						$("#outer").find(".viewpost").find(".lastanswer").html("没有更多了")
+						$("#outer").find(".viewpost").find(".postbox").append($("#outer").find(".viewpost").find(".lastanswer"))
+						$("#outer").find(".viewpost").find(".lastanswer").show()
+					},500)
+				}
+			}
+		})
+	}else{
+		$("#outer").find(".viewpost").find(".lastanswer").removeClass('actlastanswer')
+		$("#outer").find(".viewpost").find(".lastanswer").html("没有更多了")
+		$("#outer").find(".viewpost").find(".postbox").append($("#outer").find(".viewpost").find(".lastanswer"))
+		$("#outer").find(".viewpost").find(".lastanswer").show()
+	}
+	
+}
+
+var MAXIMG = 10
+var viewpost = $("#outer").find('.viewpost')
+viewpost.find(".max").html(MAXIMG)
+viewpost.find(".addpic").click(function(){
+	if(MAXIMG-viewpost.find(".imgdiv").length>0){
+		var input = $("<input class='fileselect' type='file'>")
+		input.change(function(e){
+			var files = e.target.files || e.dataTransfer.files;
+			var freader = new FileReader();
+			var thisnum = filelist1['num']+1
+			filelist1['num'] = filelist1['num']+1
+			filelist1["2uploadimg"+thisnum] = files[0]
+			freader.readAsDataURL(files[0])
+			freader.onload=function(c){
+				filedata = c.target.result
+				var img = $("<div class='imgdiv'><img id='2uploadimg"+thisnum+"' src='"+filedata+"'><span class='delimg'>X</span></div>") 
+				img.find(".delimg").click(function(){
+					var imgid = $(this).parent().find('img').attr('id')
+					$(this).parent().remove()
+					delete filelist1[imgid]
+					if(viewpost.find(".imgdiv").length==0){
+						viewpost.find(".picnum").hide()
+					}
+					viewpost.find(".picnum").html(viewpost.find(".imgdiv").length)
+					viewpost.find(".addpic").show()
+					viewpost.find(".max").html(MAXIMG-viewpost.find(".imgdiv").length)
+				})
+				
+				viewpost.find(".addpic").before(img)
+				if(MAXIMG-viewpost.find(".imgdiv").length==0){
+					viewpost.find(".addpic").hide()
+				}
+				viewpost.find(".max").html(MAXIMG-viewpost.find(".imgdiv").length)
+				viewpost.find(".picnum").html(viewpost.find(".imgdiv").length)
+				viewpost.find(".picnum").show()
+			}
+		})
+		input.click()
+		viewpost.append(input)
+	}
+})
+function upload2(file,id){
+	var formdata = new FormData();
+	formdata.append('file',file);
+	$.ajax({
+		url:'/api/mobile/upload/',
+		type:'post',
+		data: formdata,
+		async:false,
+		contentType: false,
+		processData: false,
+		success:function(res){
+			if(res.code=="0000"){
+				$("#"+id).removeAttr('style')
+				$("#"+id).attr('src',res.path)
+				$("#"+id).removeAttr('id')
+			}
+		}
+	})
+}
+viewpost.find('.replybt').click(function(){
+	var imglist = viewpost.find(".imgview").find(".imgdiv").find('img')
+	for(var i=0;i<imglist.length;i++){
+		var imgid = imglist.eq(i).attr('id')
+		if(filelist1.hasOwnProperty(imgid)){
+			var file = filelist1[imgid]
+			upload2(file,imgid)
+		}
+	}
+	var pid = $(this).attr('data')
+	var description = viewpost.find(".inputbt").val()
+	var aid = $(this).attr('data-answer')
+	var imgs = viewpost.find(".imgview").find(".imgdiv").find('img')
+	if(imgs.length>0){
+		var imgstr = ""
+		for(var i=0;i<imgs.length;i++){
+			imgstr = imgstr+','+imgs.eq(i).attr("src")
+		}
+	}
+	if(imgs.length>0 || description!=''){
+		$.post('/api/mobile/reply/',{'description':description,'img':imgstr,'post':pid,'answer':aid},function(req){
+			if(req.code=="0000"){
+				viewpost.find(".inputbt").val("")
+				viewpost.find(".picnum").hide()
+				filelist1 = {'num':0}
+				viewpost.find(".imgdiv").remove()
+				viewpost.find(".max").html(MAXIMG)
+				viewpost.find('.imgview').height(0)
+				viewpost.find(".fileselect").remove()
+				viewpost.find('.replybt').removeAttr('data-answer')
+				if(aid){
+					if(req.answer.description!=""){
+						var tomedom = $("<div style='padding:2px 5px;'><span class='tomename'>"+req.answer.authorname+"：</span>"+req.answer.description+"<span class='tometime'>"+ts_2_dt(req.answer.createtime,1)+"</span></div>")
+						viewpost.find('.a_box'+aid).find(".a_list").append(tomedom)
+					}
+				}
+			}
+		})
+	}
+})
+
+
+viewpost.find(".imgview")[0].addEventListener('touchstart', function(event) {
+	untouchmove()
+});
+
+viewpost.find(".imgview")[0].addEventListener('touchend', function(event) {
+	touchmove()
+})
+
+viewpost.find('.pic').click(function(){
+	viewpost.find('.imgview').height(180)
+})
+viewpost.find('.textbox').click(function(){
+	viewpost.find('.imgview').height(0)
+})
+viewpost.find('.inputbt').focus(function(){
+	viewpost.find('.imgview').height(0)
+})
+viewpost.find('.back').click(function(){
+	clearInterval(INTERVAL)
+	pagechange('last',true)
+	$("#outer").removeClass('actouter')
+})
+myscroll(viewpost.find('.postbox')[0],function(){
+	var pid = viewpost.attr('data-id')
+	var start = viewpost.attr('data-start')
+	getmoreanswer(pid,start)
+})
+
+
+
+</script>
+</html>
