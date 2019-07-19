@@ -1014,7 +1014,7 @@
 	<div class='menu actmenu' data='forum'>
 		<div><span class="iconfont icon-icon_luntan-xian inacticon"></span></div>
 		<div><span class="iconfont icon-icon_luntan-mian acticon" style='color:#eb413d;'></span></div>
-		<div class='menuname'><span>论坛</span></div>
+		<div class='menuname'><span>分享</span></div>
 	</div>
 	<div class='menu' data='hot'>
 		<div><span class="iconfont icon-heart inacticon"></span></div>
@@ -1995,10 +1995,12 @@ addpost.find('.send').click(function(){
 	addpost.find('.fileselect').remove()
 	var subject = addpost.find(".subject").val()
 	var description = addpost.find('.textbox').html()
+	var s_time = $("#service_time").val()
 	var block = addpost.find('.blockbt').attr('data')
 	var topic = addpost.find('.topicbt').attr('data')
 	var nextloop = true
 	var msg = "有必填项目未填写"
+	
 	if(topic==1){
 		if($("#service_time").length==0){
 			nextloop = false
@@ -2014,6 +2016,9 @@ addpost.find('.send').click(function(){
 			addpost.find(".placeholder").hide()
 		}else{
 			var s_time = $("#service_time").val()
+			$("#service_time").after("<span>"+s_time+"</span>")
+			$("#service_time").remove()
+			var description = addpost.find('.textbox').html()
 			if(s_time==""){
 				nextloop = false
 				msg = "请填写服务时间"
@@ -2021,7 +2026,6 @@ addpost.find('.send').click(function(){
 			}
 		}
 	}
-	var s_time = $("#service_time").val()
 	if(subject!="" && description!="" && block !='' && nextloop){
 		$.post("/api/mobile/addpost/",{'subject':subject,'description':description,'block':block,'topic':topic,'stime':s_time},function(req){
 			if(req.code=="0000"){
