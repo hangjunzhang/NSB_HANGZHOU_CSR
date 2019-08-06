@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>MYtest</title>
+	<title>Corporate Social Responsibility</title>
 	<link rel="stylesheet" href="/static/public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/public/swiper/swiper.min.css">
 	<link rel="stylesheet" href="/static/public/iconfont/iconfont.css">
@@ -496,6 +496,8 @@
 	border:0;
 	padding:10px;
 	z-index:-1;
+	margin-top:30px;
+	width:100%;
 	position:absolute;
 	color:gray;
 }
@@ -871,6 +873,21 @@
 	opacity: 0.6;
 	display:none;
 }
+#outer .introduce{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	z-index:99999;
+	background-color:rgba(0,0,0,0.6);
+	color:#fff;
+	font-size:16px;
+	display:none;
+}
+#outer .introduce .step{
+	visibility:hidden;
+}
+
 </style>
 <style name='outer2'>
 #outer2{
@@ -1028,6 +1045,21 @@
 	</div>
 </div>
 <div id='outer'>
+	<div class="introduce">
+		<div class='step step6' style='height:40px;line-height:40px;text-align:right;padding-right:60px;'>点这里发表 <span class='glyphicon glyphicon-arrow-right'></span></div>
+		<div class='step step3' style='height:50px;line-height:50px;text-align:left;padding-left:150px;'><span class='glyphicon glyphicon-arrow-left'></span> 填写标题</div>
+		<div class='step step4' style='height:40px;line-height:40px;text-align:left;padding-left:100px;'><span class='glyphicon glyphicon-arrow-left'></span> 填写描述</div>
+		<div class='step step1' style="position:absolute;bottom:50px;">
+			<div style='display:inline-block;text-align:center;margin-left:30px;'><div>选择板块</div><span class='glyphicon glyphicon-arrow-down'></span></div>
+			
+		</div>
+		<div class='step step2' style="position:absolute;bottom:50px;">
+			<div style='display:inline-block;text-align:center;margin-left:150px;'><div>选择分类</div><span class='glyphicon glyphicon-arrow-down'></span></div>
+		</div>
+		<div class='step step5' style="position:absolute;bottom:50px;right:10px;">
+			<div style='display:inline-block;text-align:right;'><div>可以添加图片</div><span class='glyphicon glyphicon-arrow-down'></span></div>
+		</div>
+	</div>
 	<div class="sending"></div>
 	<div class='subpage addpost' style='display:none'>
 		<div class='actionbar'>
@@ -1035,9 +1067,9 @@
 			<span class='send'>发表</span>
 		</div>
 		<div>
-			<input class='subject' placeholder='标题 （必填）' >
+			<input class='subject' placeholder='自愿者服务内容 （必填）' >
 		</div>
-		<input placeholder = "正文" class='placeholder' readonly>
+		<input placeholder = "简单描述自愿者服务事件经过或心得" class='placeholder' readonly>
 		<div contenteditable="true" class='textbox' style='height:300px;'></div>
 		<div class='selection'>
 			<div class='blockbt'>版块：<span class='block'></span><span class='glyphicon glyphicon-menu-down'></span></div>
@@ -1907,6 +1939,29 @@ addpost.find(".textbox").blur(
 var wheight = $(window).height()
 addpost.find(".textbox").css('height',wheight-150)
 function addpostfunc(bid,tid){
+	var isnew = $.cookie('isnew')
+	if(!isnew){
+		$("#outer").find('.introduce').show()
+		$("#outer").find('.introduce').attr('data-all',$("#outer").find('.introduce').find('.step').length)
+		$("#outer").find('.introduce').attr('data-step',1)
+		$("#outer").find('.introduce').find('.step1').css('visibility','visible')
+		$("#outer").find('.introduce').unbind()
+		$("#outer").find('.introduce').click(function(){
+			var step = $(this).attr('data-step')
+			var stepall = $(this).attr('data-all')
+			if(step<stepall){
+				var nexstep = parseInt(step)+1
+				$(this).attr('data-step',nexstep)
+				$(this).find('.step').css('visibility','hidden')
+				$(this).find('.step'+nexstep).css('visibility','visible')
+			}else{
+				$("#outer").find('.introduce').hide()
+				$.cookie('isnew',1)
+			}
+		})
+	}else{
+		$("#outer").find('.introduce').hide()
+	}
 	clearInterval(INTERVAL)
 	$("#outer").find(".subpage").hide()
 	addpost.show()
@@ -1921,7 +1976,7 @@ function addpostfunc(bid,tid){
 			addpost.find(".textbox").prepend(servicebox)
 			servicebox.after("<div></br></div>")
 		}
-		addpost.find(".placeholder").hide()
+		//addpost.find(".placeholder").hide()
 	}else{
 		addpost.find(".textbox").find(".sevicebox").eq(0).remove()
 	}
